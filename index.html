@@ -277,14 +277,14 @@ footer .site{margin-top:16px;font-family:'Cinzel',serif;letter-spacing:.16em;col
     <div class="milestone">
       <div class="big">5<span>0</span></div>
       <div class="stack">
-        <span class="celebrating">Celebrating Her</span>
-        <span class="bday">Golden Birthday</span>
+        <span class="celebrating">Celebrating</span>
+        <span class="bday">50 Years of Timeless Beauty</span>
       </div>
     </div>
 
     <div class="deco-div"><span class="line"></span><span class="fan gold">✦</span><span class="dot"></span><span class="fan gold">✦</span><span class="line r"></span></div>
 
-    <p style="font-size:1.25rem;color:var(--cream-dim);font-style:italic">An evening of Art Deco glamour on the water</p>
+    <p style="font-size:1.25rem;color:var(--cream-dim);font-style:italic">Prepare for an evening inspired by golden elegance</p>
 
     <div class="hero-cta">
       <a href="#rsvp" class="btn">RSVP Now</a>
@@ -386,62 +386,14 @@ footer .site{margin-top:16px;font-family:'Cinzel',serif;letter-spacing:.16em;col
     <h2 class="sec-title">Kindly Respond</h2>
     <p class="sec-sub">We would be honored by your presence. Please reply by August 12, 2026.</p>
 
-    <div class="rsvp-shell" id="rsvpShell">
-      <form class="rsvp-form" id="rsvpForm" novalidate>
-        <!-- honeypot (spam trap) -->
-        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-        <div class="field">
-          <label>Full Name <span class="req">*</span></label>
-          <input type="text" name="name" required placeholder="Your name">
-        </div>
-
-        <div class="field">
-          <label>Will You Attend? <span class="req">*</span></label>
-          <select name="attending" required>
-            <option value="" disabled selected>Please select…</option>
-            <option value="Joyfully Accepts">Joyfully Accepts ✦</option>
-            <option value="Regretfully Declines">Regretfully Declines</option>
-          </select>
-        </div>
-
-        <div class="two-col">
-          <div class="field">
-            <label>Number Attending</label>
-            <select name="guests">
-              <option value="1">1 — Just me</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5+</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Contact Number</label>
-            <input type="tel" name="phone" placeholder="(504) 000-0000">
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Email Address</label>
-          <input type="email" name="email" placeholder="you@email.com">
-        </div>
-
-        <div class="field">
-          <label>A Note or Song Request</label>
-          <textarea name="message" placeholder="Leave a birthday wish or request a song…"></textarea>
-        </div>
-
-        <button type="submit" class="btn" id="submitBtn">Send My RSVP</button>
-        <p class="err-msg" id="errMsg">Something went wrong. Please try again, or text your RSVP directly.</p>
-        <p class="form-note">Your response goes straight to the host. Merci beaucoup. ✦</p>
-      </form>
-
-      <div class="thankyou" id="thankyou">
-        <div class="checkmark">✦</div>
-        <h3>Thank You!</h3>
-        <p id="tyMsg">Your RSVP has been received. We can't wait to celebrate with you.</p>
-      </div>
+    <div class="rsvp-shell rsvp-evite" style="text-align:center">
+      <div class="ic" style="font-size:1.8rem;color:var(--gold-bright);margin-bottom:14px">✦</div>
+      <p style="font-size:1.25rem;color:var(--cream);margin-bottom:26px">
+        RSVPs are being collected through our official Evite invitation.
+        Tap below to accept and let us know you're coming.
+      </p>
+      <a href="https://evite.me/5DJRppNNem" target="_blank" rel="noopener" class="btn">RSVP on Evite</a>
+      <p class="form-note" style="margin-top:20px">You'll be taken to Evite to complete your response.</p>
     </div>
   </div>
 </section>
@@ -454,11 +406,6 @@ footer .site{margin-top:16px;font-family:'Cinzel',serif;letter-spacing:.16em;col
 </footer>
 
 <script>
-/* ===== CONFIG ===== */
-/* Paste your Google Apps Script Web App URL between the quotes below.
-   (See the SETUP GUIDE. Until then, the form runs in demo mode.) */
-const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbyKgSpBGPRCNBaA9b9KOijkFk6ChxsRA9gz9120XlLyiB_srLZzniA4HKfAZVrBt1E5xQ/exec";
-
 /* ===== sparkles ===== */
 (function(){
   const c=document.getElementById('sparkles');
@@ -524,53 +471,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbyKgSpBGPRCNBaA9b
   document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') close(); });
 })();
 
-/* ===== RSVP submit ===== */
-(function(){
-  const form=document.getElementById('rsvpForm'),
-        shell=document.getElementById('rsvpShell'),
-        ty=document.getElementById('thankyou'),
-        tyMsg=document.getElementById('tyMsg'),
-        btn=document.getElementById('submitBtn'),
-        err=document.getElementById('errMsg');
-
-  function showThanks(attending){
-    if(attending==='Regretfully Declines'){
-      tyMsg.textContent="Thank you for letting us know. You'll be dearly missed — we'll raise a glass to you.";
-    }
-    shell.classList.add('done');
-    ty.classList.add('show');
-    ty.scrollIntoView({behavior:'smooth',block:'center'});
-  }
-
-  form.addEventListener('submit',async function(ev){
-    ev.preventDefault();
-    err.style.display='none';
-    if(form.website.value){return;} // honeypot tripped
-    if(!form.name.value.trim()||!form.attending.value){
-      err.textContent='Please enter your name and let us know if you can attend.';
-      err.style.display='block';return;
-    }
-    btn.textContent='Sending…';btn.style.pointerEvents='none';btn.style.opacity='.7';
-
-    const data=new URLSearchParams();
-    new FormData(form).forEach((v,k)=>data.append(k,v));
-    data.append('submittedAt',new Date().toLocaleString('en-US',{timeZone:'America/Chicago'}));
-
-    // Demo mode if endpoint not configured
-    if(!RSVP_ENDPOINT||RSVP_ENDPOINT.indexOf('PASTE_YOUR')===0){
-      setTimeout(()=>showThanks(form.attending.value),700);
-      return;
-    }
-    try{
-      await fetch(RSVP_ENDPOINT,{method:'POST',mode:'no-cors',
-        headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data.toString()});
-      showThanks(form.attending.value);
-    }catch(e){
-      btn.textContent='Send My RSVP';btn.style.pointerEvents='';btn.style.opacity='';
-      err.style.display='block';
-    }
-  });
-})();
 </script>
 </body>
 </html>
