@@ -152,7 +152,10 @@ img{max-width:100%;display:block}
 .gallery{padding:40px 0 50px}
 .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
 .gal-item{position:relative;overflow:hidden;border:1px solid var(--gold-dim);border-radius:3px;aspect-ratio:3/4;background:#0b3d2e}
-.gal-item img{width:100%;height:100%;object-fit:cover;transition:.6s;filter:saturate(1.02)}
+.gal-item img{width:100%;height:100%;object-fit:cover;object-position:center 12%;transition:.6s;filter:saturate(1.02)}
+.gal-item.crop-top img{object-position:center 4%}
+.gal-item.crop-wide{aspect-ratio:4/3}
+.gal-item.crop-wide img{object-position:center 22%}
 .gal-item:hover img{transform:scale(1.08)}
 .gal-item::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(212,175,55,.25);pointer-events:none}
 
@@ -315,10 +318,10 @@ footer .site{margin-top:16px;font-family:'Cinzel',serif;letter-spacing:.16em;col
     <div class="gal-grid">
       <div class="gal-item"><img src="images/g1_gown.jpg" alt="Jovian" loading="lazy"></div>
       <div class="gal-item"><img src="images/g2_sequin.jpg" alt="Jovian" loading="lazy"></div>
-      <div class="gal-item"><img src="images/g3_purple.jpg" alt="Jovian" loading="lazy"></div>
+      <div class="gal-item crop-top"><img src="images/g3_purple.jpg" alt="Jovian" loading="lazy"></div>
       <div class="gal-item"><img src="images/g4_velvet.jpg" alt="Jovian" loading="lazy"></div>
+      <div class="gal-item crop-wide"><img src="images/g6_couple.jpg" alt="Jovian and Daryl Gray" loading="lazy"></div>
       <div class="gal-item"><img src="images/g5_garden.jpg" alt="Jovian" loading="lazy"></div>
-      <div class="gal-item"><img src="images/g6_couple.jpg" alt="Jovian" loading="lazy"></div>
     </div>
   </div>
 </section>
