@@ -43,14 +43,23 @@ body{
 img{max-width:100%;display:block}
 
 /* ---------- decorative background ---------- */
+.photo-collage{position:fixed;inset:0;z-index:-3;display:grid;
+  grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(6,1fr);gap:2px;
+  filter:grayscale(.35) sepia(.22) brightness(.62) contrast(1.05);}
+.photo-collage img{width:100%;height:100%;object-fit:cover;display:block}
+
 .bg-fx{position:fixed;inset:0;z-index:-2;
   background:
-    radial-gradient(1200px 600px at 50% -10%, #14584180 0%, transparent 60%),
-    radial-gradient(900px 500px at 90% 110%, #5a1f2740 0%, transparent 55%),
-    linear-gradient(180deg,#08251d 0%,#0b3d2e 45%,#08251d 100%);
+    radial-gradient(1200px 600px at 50% -10%, #14584199 0%, transparent 62%),
+    radial-gradient(900px 500px at 90% 110%, #5a1f2755 0%, transparent 58%),
+    linear-gradient(180deg,#08251dee 0%,#0b3d2ee6 45%,#08251dee 100%);
 }
 .grain{position:fixed;inset:0;z-index:-1;opacity:.05;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+@media(max-width:560px){
+  .photo-collage{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(8,1fr)}
+}
 
 /* floating sparkles */
 .sparkles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -144,9 +153,22 @@ img{max-width:100%;display:block}
 
 /* ---------- INVITE SHOWCASE ---------- */
 .showcase{padding:50px 0;text-align:center}
-.invite-card{max-width:420px;margin:30px auto 0;padding:14px;background:linear-gradient(135deg,#141f19,#0b3d2e);border:1px solid var(--gold);border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.5);transition:.5s}
+.invite-card{max-width:420px;margin:30px auto 0;padding:14px;background:linear-gradient(135deg,#141f19,#0b3d2e);border:1px solid var(--gold);border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.5);transition:.5s;cursor:zoom-in;position:relative}
 .invite-card:hover{transform:scale(1.015)}
-.invite-card img{border-radius:2px;width:100%}
+.invite-card img{border-radius:2px;width:100%;display:block}
+.invite-hint{margin-top:14px;font-family:'Cinzel',serif;letter-spacing:.2em;font-size:.66rem;text-transform:uppercase;color:var(--gold);opacity:.85}
+.invite-hint::before{content:"⊕  "}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:999;background:rgba(4,12,9,.94);display:none;align-items:center;justify-content:center;padding:26px;cursor:zoom-out;
+  opacity:0;transition:opacity .35s ease}
+.lightbox.open{display:flex}
+.lightbox.show{opacity:1}
+.lightbox img{max-width:min(92vw,720px);max-height:90vh;width:auto;border:1px solid var(--gold);border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.6);
+  transform:scale(.94);transition:transform .35s ease}
+.lightbox.show img{transform:scale(1)}
+.lightbox-close{position:absolute;top:18px;right:22px;width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:var(--gold-bright);font-size:1.3rem;background:rgba(11,61,46,.6);cursor:pointer}
 
 /* ---------- GALLERY ---------- */
 .gallery{padding:40px 0 50px}
@@ -154,8 +176,7 @@ img{max-width:100%;display:block}
 .gal-item{position:relative;overflow:hidden;border:1px solid var(--gold-dim);border-radius:3px;aspect-ratio:3/4;background:#0b3d2e}
 .gal-item img{width:100%;height:100%;object-fit:cover;object-position:center 12%;transition:.6s;filter:saturate(1.02)}
 .gal-item.crop-top img{object-position:center 4%}
-.gal-item.crop-wide{aspect-ratio:4/3}
-.gal-item.crop-wide img{object-position:center 22%}
+.gal-item.crop-wide img{object-position:50% 42%}
 .gal-item:hover img{transform:scale(1.08)}
 .gal-item::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(212,175,55,.25);pointer-events:none}
 
@@ -214,6 +235,32 @@ footer .site{margin-top:16px;font-family:'Cinzel',serif;letter-spacing:.16em;col
 </style>
 </head>
 <body>
+<div class="photo-collage" aria-hidden="true">
+  <img src="images/g2_sequin.jpg" alt="">
+  <img src="images/g5_garden.jpg" alt="">
+  <img src="images/g4_velvet.jpg" alt="">
+  <img src="images/g1_gown.jpg" alt="">
+  <img src="images/g6_couple.jpg" alt="">
+  <img src="images/g3_purple.jpg" alt="">
+  <img src="images/g5_garden.jpg" alt="">
+  <img src="images/g2_sequin.jpg" alt="">
+  <img src="images/g1_gown.jpg" alt="">
+  <img src="images/g3_purple.jpg" alt="">
+  <img src="images/g4_velvet.jpg" alt="">
+  <img src="images/g6_couple.jpg" alt="">
+  <img src="images/g5_garden.jpg" alt="">
+  <img src="images/g3_purple.jpg" alt="">
+  <img src="images/g1_gown.jpg" alt="">
+  <img src="images/g2_sequin.jpg" alt="">
+  <img src="images/g6_couple.jpg" alt="">
+  <img src="images/g4_velvet.jpg" alt="">
+  <img src="images/g4_velvet.jpg" alt="">
+  <img src="images/g3_purple.jpg" alt="">
+  <img src="images/g5_garden.jpg" alt="">
+  <img src="images/g1_gown.jpg" alt="">
+  <img src="images/g2_sequin.jpg" alt="">
+  <img src="images/g6_couple.jpg" alt="">
+</div>
 <div class="bg-fx"></div>
 <div class="grain"></div>
 <div class="sparkles" id="sparkles"></div>
@@ -303,11 +350,17 @@ footer .site{margin-top:16px;font-family:'Cinzel',serif;letter-spacing:.16em;col
 <section class="showcase">
   <div class="wrap reveal">
     <div class="eyebrow">The Invitation</div>
-    <div class="invite-card">
+    <div class="invite-card" id="inviteCard">
       <img src="images/invite.jpg" alt="Dr. Jovian Monette 50th Birthday official invitation" loading="lazy">
     </div>
+    <div class="invite-hint">Tap to zoom in</div>
   </div>
 </section>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" id="lightboxClose">&times;</div>
+  <img src="images/invite.jpg" alt="Dr. Jovian Monette 50th Birthday official invitation — full size">
+</div>
 
 <!-- ================= GALLERY ================= -->
 <section class="gallery">
@@ -447,6 +500,28 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbyKgSpBGPRCNBaA9b
     es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+/* ===== invite lightbox ===== */
+(function(){
+  const card=document.getElementById('inviteCard'),
+        box=document.getElementById('lightbox'),
+        closeBtn=document.getElementById('lightboxClose');
+  if(!card||!box) return;
+  function open(){
+    box.classList.add('open');
+    requestAnimationFrame(()=>box.classList.add('show'));
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    box.classList.remove('show');
+    document.body.style.overflow='';
+    setTimeout(()=>box.classList.remove('open'),350);
+  }
+  card.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  box.addEventListener('click',(e)=>{ if(e.target===box) close(); });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') close(); });
 })();
 
 /* ===== RSVP submit ===== */
