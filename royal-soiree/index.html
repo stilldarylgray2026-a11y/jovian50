@@ -28,7 +28,7 @@
       <a href="#details">Details</a>
       <a href="#honorees">Honorees</a>
       <a href="#attire">Attire</a>
-      <a class="nav-rsvp" href="https://www.greenvelope.com/card/.public-3a79c34e339046689d4d0d3599b4f28538343730323137#rsvp" target="_blank" rel="noopener">RSVP Now</a>
+      <a class="nav-rsvp" href="#rsvp">RSVP Now</a>
     </nav>
   </header>
   <div class="header-sentinel" data-header-sentinel aria-hidden="true"></div>
@@ -43,7 +43,7 @@
           <p class="hero-intro reveal reveal-delay-2">December 5, 2026 at Mardi Gras World, honoring Athena XII's Queen and King Select.</p>
 
           <div class="hero-actions reveal reveal-delay-3">
-            <a class="button button-primary" href="https://www.greenvelope.com/card/.public-3a79c34e339046689d4d0d3599b4f28538343730323137#rsvp" target="_blank" rel="noopener">RSVP Now</a>
+            <a class="button button-primary" href="#rsvp">RSVP Now</a>
             <a class="text-link" href="#details">View event details</a>
           </div>
 
@@ -139,15 +139,99 @@
         <p class="section-kicker">Dress for the court</p>
         <h2 id="attire-title">All black<br>cocktail attire</h2>
         <p>Refined, polished, and entirely black. The dress code will be strictly enforced.</p>
-        <a class="button button-outline" href="https://www.greenvelope.com/card/.public-3a79c34e339046689d4d0d3599b4f28538343730323137#rsvp" target="_blank" rel="noopener">RSVP Now</a>
+        <a class="button button-outline" href="#rsvp">RSVP Now</a>
       </div>
     </section>
 
-    <section class="final-rsvp" aria-labelledby="rsvp-title">
-      <div class="final-rsvp-inner reveal">
-        <h2 id="rsvp-title">Claim your place<br>at the soirée</h2>
-        <p>Please respond through the official invitation by November 20, 2026.</p>
-        <a class="button button-primary" href="https://www.greenvelope.com/card/.public-3a79c34e339046689d4d0d3599b4f28538343730323137#rsvp" target="_blank" rel="noopener">RSVP Now</a>
+    <section class="final-rsvp" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="final-rsvp-inner">
+        <div class="rsvp-intro reveal">
+          <h2 id="rsvp-title">Daryl's guest<br>RSVP</h2>
+          <p>This private response is for Daryl Gray's personal guest list. You may respond for yourself or for yourself and one guest.</p>
+          <dl class="rsvp-summary" aria-label="RSVP details">
+            <div>
+              <dt>Respond by</dt>
+              <dd>November 20, 2026</dd>
+            </div>
+            <div>
+              <dt>Event</dt>
+              <dd>Saturday, December 5 at 8:00 PM</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="rsvp-form-panel reveal reveal-delay-1">
+          <div class="rsvp-success" data-rsvp-success hidden role="status">
+            <strong>Your RSVP has been received.</strong>
+            <span>Thank you. Your response was sent to Daryl's guest list.</span>
+          </div>
+
+          <form class="rsvp-form" action="https://formsubmit.co/kingathenaxiiselect@gmail.com" method="POST" data-rsvp-form>
+            <input type="hidden" name="_subject" value="New Royal Soirée RSVP for Daryl Gray">
+            <input type="hidden" name="_next" value="https://stilldarylgray2026-a11y.github.io/jovian50/royal-soiree/?rsvp=received#rsvp">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_url" value="https://stilldarylgray2026-a11y.github.io/jovian50/royal-soiree/">
+            <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="form-field">
+              <label for="rsvp-name">Full name</label>
+              <input id="rsvp-name" type="text" name="Full name" autocomplete="name" required>
+            </div>
+
+            <div class="form-field">
+              <label for="rsvp-email">Email address</label>
+              <input id="rsvp-email" type="email" name="email" autocomplete="email" inputmode="email" required>
+            </div>
+
+            <fieldset class="form-field form-choice" data-attendance>
+              <legend>Will you attend The Royal Soirée?</legend>
+              <label>
+                <input type="radio" name="Attendance" value="Yes, I will attend" required>
+                <span>Yes, I will attend</span>
+              </label>
+              <label>
+                <input type="radio" name="Attendance" value="No, I am unable to attend" required>
+                <span>No, I am unable to attend</span>
+              </label>
+            </fieldset>
+
+            <div data-attending-fields hidden>
+              <fieldset class="form-field form-choice">
+                <legend>Who are you responding for?</legend>
+                <label>
+                  <input type="radio" name="Party size" value="Myself only" data-party-option>
+                  <span>Myself only</span>
+                </label>
+                <label>
+                  <input type="radio" name="Party size" value="Myself and one guest" data-party-option>
+                  <span>Myself and one guest</span>
+                </label>
+              </fieldset>
+
+              <div class="form-field" data-guest-field hidden>
+                <label for="guest-name">Guest's full name</label>
+                <input id="guest-name" type="text" name="Guest full name" autocomplete="name" data-guest-name>
+              </div>
+
+              <div class="form-field">
+                <label for="guest-needs">Dietary restrictions or accessibility needs <span>Optional</span></label>
+                <textarea id="guest-needs" name="Dietary restrictions or accessibility needs" rows="3"></textarea>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="guest-message">Message for Daryl <span>Optional</span></label>
+              <textarea id="guest-message" name="Message for Daryl" rows="3"></textarea>
+            </div>
+
+            <p class="form-status" data-form-status aria-live="polite"></p>
+            <button class="button button-primary form-submit" type="submit" data-submit-rsvp>Send RSVP</button>
+          </form>
+
+          <noscript>
+            <p class="form-noscript">Please enable JavaScript to use the guest options in this RSVP form.</p>
+          </noscript>
+        </div>
       </div>
     </section>
   </main>
@@ -158,7 +242,7 @@
     <span>New Orleans, Louisiana</span>
   </footer>
 
-  <a class="mobile-rsvp" href="https://www.greenvelope.com/card/.public-3a79c34e339046689d4d0d3599b4f28538343730323137#rsvp" target="_blank" rel="noopener">RSVP Now</a>
+  <a class="mobile-rsvp" href="#rsvp" data-mobile-rsvp>RSVP Now</a>
 
   <noscript>
     <style>.reveal{opacity:1;transform:none}</style>

@@ -742,29 +742,252 @@ a {
 
 .final-rsvp {
   position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 76dvh;
   overflow: hidden;
   border-top: 1px solid var(--line);
   background:
-    linear-gradient(rgba(11, 9, 8, 0.65), rgba(11, 9, 8, 0.78)),
+    linear-gradient(rgba(11, 9, 8, 0.74), rgba(11, 9, 8, 0.9)),
     url("assets/royal-soiree-backdrop.jpg") center / cover;
 }
 
 .final-rsvp-inner {
-  width: min(100% - 3rem, 760px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(30rem, 1.18fr);
+  align-items: start;
+  gap: clamp(3rem, 8vw, 8rem);
+  width: min(100% - 3rem, 1180px);
+  margin: 0 auto;
   padding: var(--section-pad) 0;
-  text-align: center;
 }
 
 .final-rsvp h2 {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  max-width: 8ch;
+  font-size: clamp(3.5rem, 7vw, 6.7rem);
   line-height: 0.95;
 }
 
-.final-rsvp-inner > p {
-  margin: 1.5rem auto 2rem;
+.rsvp-intro {
+  position: sticky;
+  top: calc(var(--header-height) + 3rem);
+}
+
+.rsvp-intro > p {
+  max-width: 31rem;
+  margin: 1.6rem 0 0;
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.22rem);
+  line-height: 1.7;
+}
+
+.rsvp-summary {
+  display: grid;
+  gap: 0;
+  margin: 2.5rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.rsvp-summary > div {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rsvp-summary dt {
+  margin-bottom: 0.2rem;
+  color: var(--gold-bright);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.rsvp-summary dd {
+  margin: 0;
+  color: var(--ivory);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.rsvp-form-panel {
+  padding: clamp(1.4rem, 3.5vw, 2.75rem);
+  border: 1px solid rgba(213, 168, 77, 0.4);
+  background:
+    linear-gradient(145deg, rgba(213, 168, 77, 0.09), transparent 34%),
+    rgba(21, 17, 15, 0.96);
+  box-shadow: inset 0 1px 0 rgba(244, 234, 215, 0.06), 0 32px 90px rgba(4, 3, 3, 0.48);
+}
+
+.rsvp-form {
+  display: grid;
+  gap: 1.45rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form-field label,
+.form-field legend {
+  color: var(--ivory);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.form-field label > span,
+.form-field legend > span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(213, 168, 77, 0.36);
+  border-radius: 0;
+  background: rgba(8, 7, 6, 0.72);
+  color: var(--ivory);
+  font: inherit;
+  line-height: 1.5;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.form-field textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
+.form-field input[type="text"]:hover,
+.form-field input[type="email"]:hover,
+.form-field textarea:hover {
+  border-color: rgba(240, 207, 122, 0.66);
+}
+
+.form-field input[type="text"]:focus,
+.form-field input[type="email"]:focus,
+.form-field textarea:focus {
+  border-color: var(--gold-bright);
+  outline: 0;
+  background: rgba(8, 7, 6, 0.94);
+  box-shadow: 0 0 0 3px rgba(240, 207, 122, 0.15);
+}
+
+.form-choice {
+  gap: 0.65rem;
+}
+
+.form-choice legend {
+  margin-bottom: 0.15rem;
+}
+
+.form-choice label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 3.2rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(213, 168, 77, 0.3);
+  background: rgba(8, 7, 6, 0.56);
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.form-choice label:hover {
+  border-color: rgba(240, 207, 122, 0.72);
+}
+
+.form-choice label:active {
+  transform: translateY(1px);
+}
+
+.form-choice input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0 0.75rem 0 0;
+  accent-color: var(--gold-bright);
+}
+
+.form-choice label:has(input:checked) {
+  border-color: var(--gold-bright);
+  background: rgba(213, 168, 77, 0.12);
+}
+
+.form-choice label > span {
+  color: var(--ivory);
+  font-size: 0.9rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.rsvp-form [data-attending-fields] {
+  display: grid;
+  gap: 1.45rem;
+}
+
+.rsvp-form [hidden],
+.rsvp-success[hidden] {
+  display: none;
+}
+
+.form-submit {
+  width: 100%;
+  min-height: 3.6rem;
+  margin-top: 0.25rem;
+  border: 1px solid var(--gold-bright);
+  cursor: pointer;
+}
+
+.form-submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.form-status {
+  min-height: 1px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.form-honey {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.rsvp-success {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--gold-bright);
+  background: rgba(213, 168, 77, 0.12);
+}
+
+.rsvp-success strong {
+  color: var(--gold-bright);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.rsvp-success span,
+.form-noscript {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.form-noscript {
+  margin: 1rem 0 0;
 }
 
 .site-footer {
@@ -803,6 +1026,11 @@ a {
 }
 
 .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.final-rsvp:target .reveal {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1028,11 +1256,27 @@ a {
   }
 
   .final-rsvp {
-    min-height: 70dvh;
+    min-height: auto;
+  }
+
+  .final-rsvp-inner {
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 2.5rem;
+    padding: var(--section-pad) 1.25rem;
+  }
+
+  .rsvp-intro {
+    position: static;
   }
 
   .final-rsvp h2 {
+    max-width: 9ch;
     font-size: clamp(3.3rem, 15vw, 5rem);
+  }
+
+  .rsvp-form-panel {
+    padding: 1.25rem;
   }
 
   .site-footer {
@@ -1060,6 +1304,13 @@ a {
     letter-spacing: 0.15em;
     text-decoration: none;
     text-transform: uppercase;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .mobile-rsvp.is-hidden {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(calc(100% + 1rem));
   }
 }
 
